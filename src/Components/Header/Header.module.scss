@@ -1,0 +1,22 @@
+
+.header{
+    height: 40px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+
+    width: 1200px;
+	max-width: 100%;
+	margin: auto;
+}
+.header-link{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+.header-link:hover{
+    cursor: pointer;
+    color: rgb(126, 186, 186);
+}
