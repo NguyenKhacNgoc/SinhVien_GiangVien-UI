@@ -30,8 +30,7 @@ function ClassRegistration() {
           alert('Xác thực thất bại, vui lòng đăng nhập lại')
           sessionStorage.removeItem('accessToken')
           navigate('/user/login')
-
-      }
+        }
         
       }
     }
@@ -150,8 +149,8 @@ function ClassRegistration() {
                 <p>Buổi học: {cls.buoihoc}</p>
                 <p>Số lượng: <span style={{padding:'4px', borderRadius:'4px', color:'#fff', backgroundColor: setColorSL(checkSLSV(cls.sinhViens.length, cls.soluong ))}}>{cls.sinhViens.length}/{cls.soluong}</span></p>
                 <p>Trạng thái: <span style={{padding:'4px', borderRadius:'4px', color:'#fff', backgroundColor: setColorSTT(checkStatus(cls.ngaymodangky, cls.ngayketthucdangky))}}>{stylesStatus(checkStatus(cls.ngaymodangky, cls.ngayketthucdangky))}</span> </p>
-                <p>Đăng ký từ: {new Date(cls.ngaymodangky).getHours()}:{String(new Date(cls.ngaymodangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngaymodangky).getDate()}-{new Date(cls.ngaymodangky).getMonth() + 1}-{new Date(cls.ngaymodangky).getFullYear()}</p>
-                <p>Đến trước: {new Date(cls.ngayketthucdangky).getHours()}:{String(new Date(cls.ngayketthucdangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngayketthucdangky).getDate()}-{new Date(cls.ngayketthucdangky).getMonth() + 1}-{new Date(cls.ngayketthucdangky).getFullYear()}</p>
+                <p>Đăng ký từ: {String(new Date(cls.ngaymodangky).getHours()).padStart(2,0)}:{String(new Date(cls.ngaymodangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngaymodangky).getDate()}-{new Date(cls.ngaymodangky).getMonth() + 1}-{new Date(cls.ngaymodangky).getFullYear()}</p>
+                <p>Đến trước: {String(new Date(cls.ngayketthucdangky).getHours()).padStart(2,0)}:{String(new Date(cls.ngayketthucdangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngayketthucdangky).getDate()}-{new Date(cls.ngayketthucdangky).getMonth() + 1}-{new Date(cls.ngayketthucdangky).getFullYear()}</p>
                 {checkHanDangKy(cls.ngaymodangky, cls.ngayketthucdangky) && checkSLSV(cls.sinhViens.length, cls.soluong ) ? (
                   <>
                   <p

@@ -59,13 +59,14 @@ function Login() {
     const handleClickLogin = async() => {
         const loginPayload = {
             email:email,
-            password:password
+            password:password,
+            
         }
         try{
-            const response = await axios.post('http://localhost:8080/api/covan/login', loginPayload)
-            sessionStorage.setItem('accessTokenCoVan', response.data.token)
+            const response = await axios.post('http://localhost:8080/api/admin/login', loginPayload)
+            sessionStorage.setItem('accessTokenAdmin', response.data.token)
             setError('')
-            navigate('/covan/profile')
+            navigate('/admin/home')
             
             
 
@@ -91,11 +92,11 @@ function Login() {
             <h1>Login</h1>
             <div className={classNames('grid__row', cx('grid__row'))} >
                 <div className={cx('form-login')}>
-                    <label className={cx('form-login-label')}>Email</label>
+                    <label className={cx('form-login-label')}>Tài khoản</label>
                     <input
                         className={cx('form-login-input')}
                         type="email"
-                        placeholder='Nhập vào email...'
+                        placeholder='Tài khoản...'
                         onChange={handleChangeEmail}
                         value={email}
                     />
@@ -126,12 +127,7 @@ function Login() {
                         className={cx('form-login-button')}  
                         onClick={handleLogin}
                     >Đăng nhập</button>
-                    <Link
-                        className={cx('form-login-link')}
-                        to='/covan/register'
-
-                    >Bạn chưa có tài khoản
-                    </Link>
+                    
                     
                    
                 </div>

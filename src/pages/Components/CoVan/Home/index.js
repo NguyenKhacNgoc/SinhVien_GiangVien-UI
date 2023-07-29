@@ -4,8 +4,11 @@ import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles)
+
 function Home() {
+    const navigate = useNavigate()
     const [lopHCs, setLopHCs] = useState([])
     const [sinhviens, setSinhViens] = useState(null)
     const fetchData = async() => {
@@ -21,6 +24,12 @@ function Home() {
         }
         catch(error){
             console.log(error)
+            if(error.message === 'Network Error') alert('Server không phản hồi')
+            else if(error.response.data === 'Xác thực thất bại'){
+              alert('Xác thực thất bại, vui lòng đăng nhập lại')
+              sessionStorage.removeItem('accessTokenCoVan')
+              navigate('/covan/login')
+            }
         }
     }
     useEffect(() => {

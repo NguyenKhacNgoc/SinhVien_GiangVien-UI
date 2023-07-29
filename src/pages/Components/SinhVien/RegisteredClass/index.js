@@ -103,7 +103,7 @@ function RegisteredClass() {
                 <p>Phòng học: {cls.phonghoc}</p>
                 <p>Buổi học: {cls.buoihoc}</p>
                 <p>Số lượng: {cls.sinhViens.length}/{cls.soluong}</p>
-                <p style={{fontWeight:'bold'}}>Huỷ trước {HanHuy(cls.ngayketthucdangky).getHours()}:{String(HanHuy(cls.ngayketthucdangky).getMinutes()).padStart(2,'0')} ngày {HanHuy(cls.ngayketthucdangky).getDate()}-{HanHuy(cls.ngayketthucdangky).getMonth() + 1}-{HanHuy(cls.ngayketthucdangky).getFullYear()}</p>
+                <p style={{fontWeight:'bold'}}>Huỷ trước {String(HanHuy(cls.ngayketthucdangky).getHours()).padStart(2,0)}:{String(HanHuy(cls.ngayketthucdangky).getMinutes()).padStart(2,'0')} ngày {HanHuy(cls.ngayketthucdangky).getDate()}-{HanHuy(cls.ngayketthucdangky).getMonth() + 1}-{HanHuy(cls.ngayketthucdangky).getFullYear()}</p>
                 {checkHanHuy(HanHuy(cls.ngayketthucdangky)) ? (
                   <button
                   onClick={() => {handleCancelClick(cls.id)}}

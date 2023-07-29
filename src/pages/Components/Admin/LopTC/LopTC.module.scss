@@ -1,0 +1,85 @@
+
+.loptc-list {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 0.9rem;
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        
+        th, td {
+          padding: 12px;
+          text-align: center;
+          border: 1px solid #ccc;
+        }
+        
+        th {
+          background-color: #f2f2f2;
+          color: black;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+        tr:nth-child(even) .button-link {
+          background-color: #f2f2f2;
+          border: none;
+        }
+        tr:nth-child(odd) .button-link {
+          background-color: #fff;
+          border: none;
+        }
+        .button-link:hover{
+          cursor: pointer;
+          color: maroon;
+        }
+        
+      }
+    }
+.loptc-list-link{
+  text-decoration: none;
+  color: black;
+}
+.loptc-list-link span{
+  padding: 5px;
+  border-radius: 5px;
+  background-color: pink;
+  
+}
+/* CSS cho form-addclass */
+.form-addclass {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.form-addclass label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-addclass select,
+.form-addclass input[type="datetime-local"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-addclass button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.form-addclass button:hover {
+  background-color: #0056b3;
+}

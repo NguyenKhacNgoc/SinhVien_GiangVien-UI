@@ -59,8 +59,8 @@ function Login() {
     const handleClickLogin = async() => {
         const loginPayload = {
             email:email,
-            password:password,
-            role:'sinhvien'
+            password:password
+            
         }
         try{
             const response = await axios.post('http://localhost:8080/api/login', loginPayload)

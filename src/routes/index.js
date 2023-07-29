@@ -13,6 +13,10 @@ import CoVanRegister from "../pages/Components/CoVan/Register"
 import CoVanProfile from "../pages/Components/CoVan/Profile"
 import CoVanHome from "../pages/Components/CoVan/Home"
 import DangKyTinChi from "../pages/Components/CoVan/DangKyTinChi";
+//Admin
+import adminLogin from "../pages/Components/Admin/Login"
+import adminHome from "../pages/Components/Admin/Home"
+import adLopTC from "../pages/Components/Admin/LopTC";
 const publicRoutes = [
     {path: '/', component: Home, layout: null},
     {path: '/classschedule', component: ClassSchedule},
@@ -26,6 +30,9 @@ const publicRoutes = [
     {path:'/covan/register', component:CoVanRegister, layout:CoVanLayOut},
     {path:'/covan/profile', component:CoVanProfile, layout:CoVanLayOut},
     {path:'/covan/home', component:CoVanHome, layout:CoVanLayOut},
-    {path:'/covan/loptinchi/:sinhvienID', component:DangKyTinChi, layout:CoVanLayOut}
+    {path:'/covan/loptinchi/:sinhvienID', component:DangKyTinChi, layout:CoVanLayOut},
+    {path:'/admin/login', component:adminLogin, layout:CoVanLayOut},
+    {path:'/admin/home', component:adminHome, layout:null},
+    {path:'/admin/loptinchi', component:adLopTC, layout:null}
 ]
 export {publicRoutes}

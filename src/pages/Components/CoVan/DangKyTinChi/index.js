@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from './DangKyTinChi.module.scss'
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket, faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles)
 function DangKyTinChi() {
+  const navigate = useNavigate()
     const {sinhvienID} = useParams()
     const [classes, setClasses] = useState([])
     const [classed, setClassed] = useState([])
@@ -36,6 +37,12 @@ function DangKyTinChi() {
 
         }catch(error){
             console.log(error)
+            if(error.message === 'Network Error') alert('Server không phản hồi')
+            else if(error.response.data === 'Xác thực thất bại'){
+              alert('Xác thực thất bại, vui lòng đăng nhập lại')
+              sessionStorage.removeItem('accessTokenCoVan')
+              navigate('/covan/login')
+            }
         }
     }
 
@@ -164,8 +171,8 @@ function DangKyTinChi() {
                             <p>Buổi học: {cls.buoihoc}</p>
                             <p>Số lượng: <span style={{padding:'4px', borderRadius:'4px', color:'#fff', backgroundColor: setColorSL(checkSLSV(cls.sinhViens.length, cls.soluong ))}}>{cls.sinhViens.length}/{cls.soluong}</span></p>
                             <p>Trạng thái: <span style={{padding:'4px', borderRadius:'4px', color:'#fff', backgroundColor: setColorSTT(checkStatus(cls.ngaymodangky, cls.ngayketthucdangky))}}>{stylesStatus(checkStatus(cls.ngaymodangky, cls.ngayketthucdangky))}</span> </p>
-                            <p>Đăng ký từ: {new Date(cls.ngaymodangky).getHours()}:{String(new Date(cls.ngaymodangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngaymodangky).getDate()}-{new Date(cls.ngaymodangky).getMonth() + 1}-{new Date(cls.ngaymodangky).getFullYear()}</p>
-                            <p>Đến trước: {new Date(cls.ngayketthucdangky).getHours()}:{String(new Date(cls.ngayketthucdangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngayketthucdangky).getDate()}-{new Date(cls.ngayketthucdangky).getMonth() + 1}-{new Date(cls.ngayketthucdangky).getFullYear()}</p>
+                            <p>Đăng ký từ: {String(new Date(cls.ngaymodangky).getHours()).padStart(2,0)}:{String(new Date(cls.ngaymodangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngaymodangky).getDate()}-{new Date(cls.ngaymodangky).getMonth() + 1}-{new Date(cls.ngaymodangky).getFullYear()}</p>
+                            <p>Đến trước: {String(new Date(cls.ngayketthucdangky).getHours()).padStart(2,0)}:{String(new Date(cls.ngayketthucdangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngayketthucdangky).getDate()}-{new Date(cls.ngayketthucdangky).getMonth() + 1}-{new Date(cls.ngayketthucdangky).getFullYear()}</p>
                            
                             {checkSLSV(cls.sinhViens.length, cls.soluong) && hanDangKy(cls.ngaymodangky)?(
                                 <button
@@ -200,8 +207,8 @@ function DangKyTinChi() {
                             <p>Phòng học: {cls.phonghoc}</p>
                             <p>Buổi học: {cls.buoihoc}</p>
                             <p>Số lượng: <span style={{padding:'4px', borderRadius:'4px', color:'#fff', backgroundColor: setColorSL(checkSLSV(cls.sinhViens.length, cls.soluong ))}}>{cls.sinhViens.length}/{cls.soluong}</span></p>
-                            <p>Đăng ký từ: {new Date(cls.ngaymodangky).getHours()}:{String(new Date(cls.ngaymodangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngaymodangky).getDate()}-{new Date(cls.ngaymodangky).getMonth() + 1}-{new Date(cls.ngaymodangky).getFullYear()}</p>
-                            <p>Đến trước: {new Date(cls.ngayketthucdangky).getHours()}:{String(new Date(cls.ngayketthucdangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngayketthucdangky).getDate()}-{new Date(cls.ngayketthucdangky).getMonth() + 1}-{new Date(cls.ngayketthucdangky).getFullYear()}</p>
+                            <p>Đăng ký từ: {String(new Date(cls.ngaymodangky).getHours()).padStart(2,0)}:{String(new Date(cls.ngaymodangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngaymodangky).getDate()}-{new Date(cls.ngaymodangky).getMonth() + 1}-{new Date(cls.ngaymodangky).getFullYear()}</p>
+                            <p>Đến trước: {String(new Date(cls.ngayketthucdangky).getHours()).padStart(2,0)}:{String(new Date(cls.ngayketthucdangky).getMinutes()).padStart(2,'0')} ngày {new Date(cls.ngayketthucdangky).getDate()}-{new Date(cls.ngayketthucdangky).getMonth() + 1}-{new Date(cls.ngayketthucdangky).getFullYear()}</p>
                             <button
                                 className={cx('button-huy')}
                                 style={{color:'maroon'}}
