@@ -64,7 +64,7 @@ function Login() {
         }
         try{
             const response = await axios.post('http://localhost:8080/api/admin/login', loginPayload)
-            sessionStorage.setItem('accessTokenAdmin', response.data.token)
+            localStorage.setItem('accessTokenAdmin', response.data.token)
             setError('')
             navigate('/admin/home')
             

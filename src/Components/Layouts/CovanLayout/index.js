@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 const cx = classNames.bind(styles)
 function CoVanLayOut({children}) {
-    const islogged = sessionStorage.getItem('accessTokenCoVan')
+    const islogged = localStorage.getItem('accessTokenCoVan')
     return (
         <>
         <header className={cx('header')}>

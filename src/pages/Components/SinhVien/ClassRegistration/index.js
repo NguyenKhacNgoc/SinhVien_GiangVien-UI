@@ -12,7 +12,7 @@ function ClassRegistration() {
     const navigate = useNavigate()
     const fetchUserIn4 = async() => {
       try{
-        const accessToken = sessionStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
         const response = await axios.get('http://localhost:8080/api/lich', {
           headers: {
             Authorization: `Bearer ${accessToken}`
@@ -28,7 +28,7 @@ function ClassRegistration() {
         if(error.message === 'Network Error') alert('Server không phản hồi')
         else if(error.response.data === 'Xác thực thất bại'){
           alert('Xác thực thất bại, vui lòng đăng nhập lại')
-          sessionStorage.removeItem('accessToken')
+          localStorage.removeItem('accessToken')
           navigate('/user/login')
         }
         
@@ -41,7 +41,7 @@ function ClassRegistration() {
     const handleDangKyClick = async (lopID) => {
       try{
         
-        const accessToken = sessionStorage.getItem('accessToken')
+        const accessToken = localStorage.getItem('accessToken')
         const response = await axios.put(`http://localhost:8080/api/addclass`,{lopID:lopID},
         {
           headers: {

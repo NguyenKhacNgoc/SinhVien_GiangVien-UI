@@ -63,7 +63,7 @@ function Login() {
         }
         try{
             const response = await axios.post('http://localhost:8080/api/covan/login', loginPayload)
-            sessionStorage.setItem('accessTokenCoVan', response.data.token)
+            localStorage.setItem('accessTokenCoVan', response.data.token)
             setError('')
             navigate('/covan/profile')
             

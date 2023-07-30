@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 function Home() {
-    const accessTokenCoVan = sessionStorage.getItem('accessTokenCoVan')
+    const accessTokenCoVan = localStorage.getItem('accessTokenCoVan')
     const styles = {
         fontSize:'1.6rem',
         textDecoration: 'none', // Remove underline from links

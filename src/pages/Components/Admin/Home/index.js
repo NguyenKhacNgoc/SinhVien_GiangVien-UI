@@ -12,7 +12,7 @@ function Home() {
         margin: '10px auto', // Center the links horizontally in the grid
         textAlign: 'center', // Center the text inside the links
     }
-    const accessTokenAdmin = sessionStorage.getItem('accessTokenAdmin')
+    const accessTokenAdmin = localStorage.getItem('accessTokenAdmin')
     
     return (
         <div className="grid">

@@ -13,7 +13,7 @@ function DangKyTinChi() {
     const [classed, setClassed] = useState([])
     const fetchDataChua = async() => {
         try{
-            const accessToken = sessionStorage.getItem('accessTokenCoVan')
+            const accessToken = localStorage.getItem('accessTokenCoVan')
             const response = await axios.get(`http://localhost:8080/api/covan/getloptinchi?sinhvienID=${sinhvienID}`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -27,7 +27,7 @@ function DangKyTinChi() {
     }
     const fetchDataDa = async() => {
         try{
-            const accessToken = sessionStorage.getItem('accessTokenCoVan')
+            const accessToken = localStorage.getItem('accessTokenCoVan')
             const response = await axios.get(`http://localhost:8080/api/covan/getloptinchied?sinhvienID=${sinhvienID}`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -40,7 +40,7 @@ function DangKyTinChi() {
             if(error.message === 'Network Error') alert('Server không phản hồi')
             else if(error.response.data === 'Xác thực thất bại'){
               alert('Xác thực thất bại, vui lòng đăng nhập lại')
-              sessionStorage.removeItem('accessTokenCoVan')
+              localStorage.removeItem('accessTokenCoVan')
               navigate('/covan/login')
             }
         }
@@ -106,7 +106,7 @@ function DangKyTinChi() {
     const handleDangKyClick = async (lopID) => {
         try{
 
-          const accessToken = sessionStorage.getItem('accessTokenCoVan')
+          const accessToken = localStorage.getItem('accessTokenCoVan')
           const data = {
             lopID: lopID,
             sinhvienID: sinhvienID
@@ -130,7 +130,7 @@ function DangKyTinChi() {
     const handleCancelClick = async (lopID) => {
         try{
           
-          const accessToken = sessionStorage.getItem('accessTokenCoVan')
+          const accessToken = localStorage.getItem('accessTokenCoVan')
           const data = {
             lopID: lopID,
             sinhvienID: sinhvienID

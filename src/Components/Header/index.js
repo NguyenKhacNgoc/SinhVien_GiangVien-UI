@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 const cx = classNames.bind(styles)
 function Header() {
-    const islogged = sessionStorage.getItem('accessToken')
+    const islogged = localStorage.getItem('accessToken')
     return (
         <header className={cx('header')}>
             <Link 

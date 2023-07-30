@@ -12,7 +12,7 @@ function Profile() {
     useEffect(() => {
         const fetchUserIn4 = async() => {
             try{
-                const accessToken = sessionStorage.getItem('accessTokenCoVan')
+                const accessToken = localStorage.getItem('accessTokenCoVan')
                 const response = await axios.get('http://localhost:8080/api/covan/profile', {
                     headers: {
                         Authorization: `Bearer ${accessToken}`
@@ -31,7 +31,7 @@ function Profile() {
                     alert('Server không phản hồi')
                 }
                 else{
-                    sessionStorage.removeItem('accessTokenCoVan')
+                    localStorage.removeItem('accessTokenCoVan')
                     navigate('/covan/login')
                 }
                 
@@ -41,7 +41,7 @@ function Profile() {
     }, [])
     
     const handlelogout = () => {
-        sessionStorage.removeItem('accessTokenCoVan')
+        localStorage.removeItem('accessTokenCoVan')
         navigate('/covan/login')
     }
     return (

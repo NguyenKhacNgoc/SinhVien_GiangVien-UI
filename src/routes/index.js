@@ -17,6 +17,8 @@ import DangKyTinChi from "../pages/Components/CoVan/DangKyTinChi";
 import adminLogin from "../pages/Components/Admin/Login"
 import adminHome from "../pages/Components/Admin/Home"
 import adLopTC from "../pages/Components/Admin/LopTC";
+import adDiemSV from "../pages/Components/Admin/Performance"
+
 const publicRoutes = [
     {path: '/', component: Home, layout: null},
     {path: '/classschedule', component: ClassSchedule},
@@ -33,6 +35,8 @@ const publicRoutes = [
     {path:'/covan/loptinchi/:sinhvienID', component:DangKyTinChi, layout:CoVanLayOut},
     {path:'/admin/login', component:adminLogin, layout:CoVanLayOut},
     {path:'/admin/home', component:adminHome, layout:null},
-    {path:'/admin/loptinchi', component:adLopTC, layout:null}
+    {path:'/admin/loptinchi', component:adLopTC, layout:null},
+    {path:'/admin/diemsv/:loptcID/:sinhvienID', component:adDiemSV, layout:null}
+
 ]
 export {publicRoutes}

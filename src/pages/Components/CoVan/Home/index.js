@@ -13,7 +13,7 @@ function Home() {
     const [sinhviens, setSinhViens] = useState(null)
     const fetchData = async() => {
         try{
-            const accessToken = sessionStorage.getItem('accessTokenCoVan')
+            const accessToken = localStorage.getItem('accessTokenCoVan')
             const response = await axios.get('http://localhost:8080/api/covan/getlopHC',{
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -27,7 +27,7 @@ function Home() {
             if(error.message === 'Network Error') alert('Server không phản hồi')
             else if(error.response.data === 'Xác thực thất bại'){
               alert('Xác thực thất bại, vui lòng đăng nhập lại')
-              sessionStorage.removeItem('accessTokenCoVan')
+              localStorage.removeItem('accessTokenCoVan')
               navigate('/covan/login')
             }
         }
@@ -37,7 +37,7 @@ function Home() {
     }, [])
     const handleLopHCClick = async(lophcid) => {
         try{
-            const accessToken = sessionStorage.getItem('accessTokenCoVan')
+            const accessToken = localStorage.getItem('accessTokenCoVan')
             const response = await axios.get(`http://localhost:8080/api/covan/getsvbylophc?lophc=${lophcid}`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`

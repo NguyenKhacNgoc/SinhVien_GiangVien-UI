@@ -31,9 +31,11 @@ function AdLopTC() {
     const [errorHandk, setErrorHandk] = useState()
     const [errorNgaybdh, setErrorNgaybdh] = useState()
 
+    const [selectedClassID, setSelectedClassID] = useState()
+
     const fetchData = async() => {
         try{
-            const accessToken = sessionStorage.getItem('accessTokenAdmin')
+            const accessToken = localStorage.getItem('accessTokenAdmin')
             const response = await axios.get('http://localhost:8080/api/admin/getlopTC',{
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -48,7 +50,7 @@ function AdLopTC() {
             if(error.message === 'Network Error') alert('Server không phản hồi')
             else if(error.response.data === 'Xác thực thất bại'){
               alert('Xác thực thất bại, vui lòng đăng nhập lại')
-              sessionStorage.removeItem('accessTokenAdmin')
+              localStorage.removeItem('accessTokenAdmin')
               navigate('/admin/login')
             }
         }
@@ -140,7 +142,7 @@ function AdLopTC() {
         }
         if(mon && ngayhoc && buoihoc && phonghoc && soluong && ngaymodangky && ngayketthucdangky && ngaybatdauhoc){
             try{
-                const accessToken = sessionStorage.getItem('accessTokenAdmin')
+                const accessToken = localStorage.getItem('accessTokenAdmin')
                 const data = {
                     mon:mon,
                     ngayhoc:ngayhoc,
@@ -168,7 +170,7 @@ function AdLopTC() {
     }
     const handleDelete = async(loptcID) => {
         try{
-            const accessToken = sessionStorage.getItem('accessTokenAdmin')
+            const accessToken = localStorage.getItem('accessTokenAdmin')
             
             const response = await axios.delete(`http://localhost:8080/api/admin/deleteclass?loptc=${loptcID}`, {
                 headers: {
@@ -186,9 +188,20 @@ function AdLopTC() {
     const setColorTrangThai = (stt) => {
         switch(stt){
             case 'Chưa hoàn thành': return 'lime'
-            case 'Đã hoàn thành':  return 'Marron'
+            case 'Đã xong':  return 'gray'
             default: return 'white'
         }
+    }
+    const setButtonTrangThai = (stt) => {
+        switch(stt){
+            case 'Chưa hoàn thành': return true
+            case 'Đã xong': return false
+            default: return false
+        }
+    }
+    const handleClassClick = (id) => {
+        setSelectedClassID(id)
+        
     }
     
     
@@ -272,6 +285,7 @@ function AdLopTC() {
                                 <th>Ngày học</th>
                                 <th>Buổi học</th>
                                 <th>Phòng học</th>
+                                <th>Số lượng</th>
                                 <th>Ngày mở đăng ký</th>
                                 <th>Hạn đăng ký</th>
                                 <th>Học từ</th>
@@ -284,16 +298,18 @@ function AdLopTC() {
                             <tr key={ltc.id}>
                                 <td>{ltc.id}</td>
                                 <td>
-                                    <Link
+                                    <button
                                         className={cx('loptc-list-link')}
-                                        to={`/admin/loptinchi/${ltc.id}`}
+                                        
+                                        onClick={() => {handleClassClick(ltc.id)}}
                                     >
                                     <span>{ltc.mon.name}</span>
-                                    </Link>
+                                    </button>
                                 </td>
                                 <td>{convertDayOfWeek(ltc.ngayhoc)}</td>
                                 <td>{ltc.buoihoc}</td>
                                 <td>{ltc.phonghoc}</td>
+                                <td><span>{ltc.sinhViens.length}/{ltc.soluong}</span></td>
                                 <td>{String(new Date(ltc.ngaymodangky).getHours()).padStart(2,0)}:{String(new Date(ltc.ngaymodangky).getMinutes()).padStart(2,0)} ngày {new Date(ltc.ngaymodangky).getDate()}-{new Date(ltc.ngaymodangky).getMonth()+1}-{new Date(ltc.ngaymodangky).getFullYear()}</td>
                                 <td>{String(new Date(ltc.ngayketthucdangky).getHours()).padStart(2,0)}:{String(new Date(ltc.ngayketthucdangky).getMinutes()).padStart(2,0)} ngày {new Date(ltc.ngayketthucdangky).getDate()}-{new Date(ltc.ngayketthucdangky).getMonth()+1}-{new Date(ltc.ngayketthucdangky).getFullYear()}</td>
                                 <td>{new Date(ltc.ngaybatdauhoc).getDate()}-{new Date(ltc.ngaybatdauhoc).getMonth()+1}-{new Date(ltc.ngaybatdauhoc).getFullYear()}</td>
@@ -324,6 +340,47 @@ function AdLopTC() {
                     </table>
                 </div>
                 </div>
+            )}
+            {selectedClassID && (
+                <div className={classNames('grid__row', cx('grid__row'))}>
+                <div className={cx('loptc-list')}>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã sinh viên</th>
+                            <th>Tên sinh viên</th>
+                            <th>Ngày sinh</th>
+                            <th>Liên hệ</th>
+                            <th>Mã lớp tín chỉ</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {lopTCs.find((ltc) => ltc.id === selectedClassID).sinhViens.map((sv) => (
+                        <tr key={sv.id}>
+                            <td>{sv.masv}</td>
+                            <td>
+                                <Link
+                                    className={cx('loptc-list-link')}
+                                    to={`/admin/diemsv/${selectedClassID}/${sv.id}`}
+                                    target='_blank'
+                                    
+                                >
+                                <span>{sv.name}</span>
+                                </Link>
+                            </td>
+                            <td>{new Date(sv.ngaysinh).getDate()}-{new Date(sv.ngaysinh).getMonth() + 1}-{new Date(sv.ngaysinh).getFullYear()}</td>
+                            <td>{sv.email}</td>
+                            <td>{selectedClassID}</td>
+                           
+                            
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+
             )}
             
 

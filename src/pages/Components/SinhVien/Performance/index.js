@@ -36,7 +36,7 @@ function Performance() {
     ];
     const fetchData = async() => {
         try{
-            const accessToken = sessionStorage.getItem('accessToken')
+            const accessToken = localStorage.getItem('accessToken')
             const response = await axios.get('http://localhost:8080/api/getDiem', {
                 headers: {
                     Authorization: `Bearer ${accessToken}`

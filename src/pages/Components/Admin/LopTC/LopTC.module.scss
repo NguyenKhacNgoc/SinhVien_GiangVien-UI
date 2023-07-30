@@ -2,7 +2,7 @@
 .loptc-list {
     width: 100%;
     margin-top: 20px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
       table {
         width: 100%;
         border-collapse: collapse;
@@ -22,11 +22,11 @@
         tr:nth-child(even) {
           background-color: #f2f2f2;
         }
-        tr:nth-child(even) .button-link {
+        tr:nth-child(even) button {
           background-color: #f2f2f2;
           border: none;
         }
-        tr:nth-child(odd) .button-link {
+        tr:nth-child(odd) button {
           background-color: #fff;
           border: none;
         }
@@ -40,6 +40,10 @@
 .loptc-list-link{
   text-decoration: none;
   color: black;
+  border: none;
+}
+.loptc-list-link:hover{
+  cursor: pointer;
 }
 .loptc-list-link span{
   padding: 5px;
